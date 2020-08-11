@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Family Medicine Practice</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, textarea, label, p {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 38px;
+      color: #fff;
+      z-index: 2;
+      line-height: 83px;
+      }
+      textarea {
+      width: calc(100% - 12px);
+      padding: 5px;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 8px  #669999;
+      }
+      .banner {
+      position: relative;
+      height: 300px;
+      background-image: url("/uploads/media/default/0001/02/174b2e72df50743dfaa0a3bf9d2e59d8b42c91e1.jpeg");
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.2);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      input[type="date"] {
+      padding: 4px 5px;
+      }
+      textarea {
+      width: calc(100% - 12px);
+      padding: 5px;
+      }
+      .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+      color:  #669999;
+      }
+      .item input:hover, .item select:hover, .item textarea:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 3px 0  #669999;
+      color: #669999;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      .item span {
+      color: red;
+      }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      font-size: 20px;
+      color:  #a3c2c2;
+      }
+      .item i {
+      right: 1%;
+      top: 30px;
+      z-index: 1;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 1%;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+      }
+      input[type=radio], input[type=checkbox]  {
+      display: none;
+      }
+      label.radio {
+      position: relative;
+      display: inline-block;
+      margin: 5px 20px 15px 0;
+      cursor: pointer;
+      }
+      .question span {
+      margin-left: 30px;
+      }
+      .question-answer label {
+      display: block;
+      }
+      label.radio:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      }
+      input[type=radio]:checked + label:before, label.radio:hover:before {
+      border: 2px solid  #669999;
+      }
+      label.radio:after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 5px;
+      width: 8px;
+      height: 4px;
+      border: 3px solid  #669999;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      opacity: 0;
+      }
+      input[type=radio]:checked + label:after {
+      opacity: 1;
+      }
+      .flax {
+      display:flex;
+      justify-content:space-around;
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background:  #669999;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background:  #a3c2c2;
+      }
+      @media (min-width: 568px) {
+      .name-item, .city-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .name-item input, .name-item div {
+      width: calc(50% - 20px);
+      }
+      .name-item div input {
+      width:97%;}
+      .name-item div label {
+      display:block;
+      padding-bottom:5px;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="testbox">
+      <form method="POST" action="/result">
+        <div class="banner">
+          <h1>Student Grade Prediction</h1>
+        </div>
+        <br/>
+        <fieldset>
+          <legend>Student Grade Prediction</legend>
+
+          <div class="item">
+            <p>Sex</p>
+            <select>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Branch</p>
+            <select>
+            <option value="CSE">CSE</option>
+            <option value="CE">CE</option>
+            <option value="CL">CL</option>
+            <option value="BSBE">BSBE</option>
+            <option value="CST">CST</option>
+            <option value="ME">ME</option>
+            <option value="MC">MC</option>
+            <option value="Design">Design</option>
+            <option value="ECE/EEE">ECE/EEE</option>
+            <option value="EP">EP</option>
+            </select>
+
+          </div>
+          <div class="item">
+            <p>Dropper</p>
+            <select>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <label for="fname"> Coaching City<span>*</span></label>
+            <input id="fname" type="text" name="fname" required/>
+          </div>
+
+          <div class="item">
+            <label for="fname"> Coaching Name<span>*</span></label>
+            <input id="fname" type="text" name="fname" required/>
+          </div>
+
+          <div class="item">
+            <label for="fname"> Home City<span>*</span></label>
+            <input id="fname" type="text" name="fname" required/>
+          </div>
+
+
+          <div class="item">
+            <p>Mom's Education</p>
+            <select>
+            <option value="10th Pass">10th Pass</option>
+            <option value="12th Pass">12th Pass</option>
+            <option value="Graduate">Graduate</option>
+            <option value="Post Graduate">Post Graduate</option>
+            <option value="<10th Pass">&lt;10th Pass</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Dad's Education</p>
+            <select>
+            <option value="10th Pass">10th Pass</option>
+            <option value="12th Pass">12th Pass</option>
+            <option value="Graduate">Graduate</option>
+            <option value="Post Graduate">Post Graduate</option>
+            <option value="<10th Pass">&lt;10th Pass</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Dad's Job</p>
+            <select>
+            <option value="Business">Business</option>
+            <option value="Management & Finance">Management &amp; Finance</option>
+            <option value="Technical">Technical</option>
+            <option value="Artist">Artist</option>
+            <option value="Medical">Medical</option>
+            <option value="Law">Law</option>
+            <option value="Govt">Govt</option>
+            <option value="Else">Else</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Study Time?</p>
+            <select>
+            <option value="Everyday upto 2-4 hours">Everyday upto 2-4 hours</option>
+            <option value="Everyday upto 0-2 hours">Everyday upto 0-2 hours</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Hostel?</p>
+            <select>
+            <option value="Lohit">Lohit</option>
+            <option value="Barak">Barak</option>
+            <option value="Manas">Manas</option>
+            <option value="Kapili">Kapili</option>
+            <option value="Siang">Siang</option>
+            <option value="Brahmaputra">Brahmaputra</option>
+            <option value="Umiam">Umiam</option>
+            <option value="Kameng">Kameng</option>
+            <option value="Dhansiri">Dhansiri</option>
+            <option value="Dihing">Dihing</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <label for="fname"> At the time of Spardha/Kirti/Manthan, approx. time given per day? (hours)<span>*</span></label>
+            <input id="fname" type="text" name="fname" required/>
+          </div>
+
+          <div class="item">
+            <label for="fname"> Time spent outside your room[except classes]? (daily average, in hours)<span>*</span></label>
+            <input id="fname" type="text" name="fname" required/>
+          </div>
+
+
+          <div class="item">
+            <p>Attendance?</p>
+            <select>
+            <option value="Below 50?">Below 50?</option>
+            <option value="Below 75?">Below 75?</option>
+            <option value="Below 90?">Below 90?</option>
+            <option value="Above 90?">Above 90?</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Relationship status?</p>
+            <select>
+            <option value="Single">Single</option>
+            <option value="Committed">Committed</option>
+            <option value="Complicated">Complicated</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Library?</p>
+            <select>
+            <option value="During Exams">During Exams</option>
+            <option value="Often">Often</option>
+            <option value="Rarely">Rarely</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Sleep Duration(Hrs)?</p>
+            <select>
+            <option value="<=4">&lt;= 4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value=">=8">&gt;=8</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Tut taken seriously</p>
+            <select>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Quiz taken seriously</p>
+            <select>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Midsem taken seriously</p>
+            <select>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Endsem taken seriously</p>
+            <select>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div class="item">
+            <p>Aiming for branch change</p>
+            <select>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+
+
+          <!-- <div class="item">
+            <label for="fname"> First Name<span>*</span></label>
+            <input id="fname" type="text" name="fname" required/>
+          </div>
+
+          <div class="item">
+            <p>Time</p>
+            <select>
+              <option selected value="" disabled selected></option>
+              <option value="m" >Morning</option>
+              <option value="a">Afternoon</option>
+              <option value="e">Evening</option>
+            </select>
+          </div>
+          <div class="question">
+            <label>Preferred Physician</label>
+            <div class="question-answer">
+              <div>
+                <input type="radio" value="none" id="radio_1" name="physician"/>
+                <label for="radio_1" class="radio"><span>Dr. Anderson</span></label>
+              </div>
+              <div>
+                <input  type="radio" value="none" id="radio_3" name="physician"/>
+                <label for="radio_3" class="radio"><span>Dr. Patel</span></label>
+              </div>
+              <div>
+                <input  type="radio" value="none" id="radio_4" name="physician"/>
+                <label for="radio_4" class="radio"><span>No preference</span></label>
+              </div>
+              <div>
+                <input  type="radio" value="none" id="radio_5" name="physician"/>
+                <label for="radio_5" class="radio"><span>Dr. Jones</span></label>
+              </div>
+              <div>
+                <input  type="radio" value="none" id="radio_6" name="physician"/>
+                <label for="radio_6" class="radio"><span>Dr. Smith</span></label>
+              </div>
+            </div> -->
+          </div>
+
+          <input id = "submit" value = "submit" button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
